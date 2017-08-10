@@ -10,6 +10,9 @@
 #
 %if 0%{?scl:1}
 %global sub_prefix sclo-%{scl_prefix}
+%if "%{scl}" == "rh-php71"
+%global sub_prefix sclo-php71-
+%endif
 %if "%{scl}" == "rh-php70"
 %global sub_prefix sclo-php70-
 %endif
@@ -25,7 +28,7 @@
 Summary:        An extension to track progress of a file upload
 Name:           %{?sub_prefix}php-pecl-%{pecl_name}
 Version:        1.0.3.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        PHP
 Group:          Development/Languages
 URL:            http://pecl.php.net/package/%{pecl_name}
@@ -161,6 +164,9 @@ cd NTS
 
 
 %changelog
+* Thu Aug 10 2017 Remi Collet <remi@remirepo.net> - 1.0.3.1-3
+- change for sclo-php71
+
 * Thu Nov  3 2016 Remi Collet <remi@fedoraproject.org> - 1.0.3.1-2
 - add patch for PHP 7
 

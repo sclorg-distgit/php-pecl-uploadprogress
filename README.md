@@ -1,35 +1,23 @@
-PHP 5.4 / EL 6
+This repository contains sources for RPMs that are used
+to build Software Collections for CentOS by SCLo SIG.
 
-    build -bs *spec --define "scl php54" --define "dist .el6"
-    cbs add-pkg   sclo6-sclo-php54-sclo-candidate --owner=sclo  sclo-php54-php-pecl-uploadprogress
-    cbs add-pkg   sclo6-sclo-php54-sclo-testing   --owner=sclo  sclo-php54-php-pecl-uploadprogress
-    cbs add-pkg   sclo6-sclo-php54-sclo-release   --owner=sclo  sclo-php54-php-pecl-uploadprogress
-    cbs build     sclo6-sclo-php54-sclo-el6       <above>.src.rpm
-    cbs tag-build sclo6-sclo-php54-sclo-testing   <previous>
+This branch is for sclo-php56, scl-php70 and scl-php71 packages
+(for rh-php56, rh-php70 and rh-php71 SCL)
 
-PHP 5.5 / EL 6
+PHP 7.1 / EL 7
 
-    build -bs *spec --define "scl php55" --define "dist .el6"
-    cbs add-pkg sclo6-sclo-php55-sclo-candidate --owner=sclo  sclo-php55-php-pecl-uploadprogress
-    cbs build   sclo6-sclo-php55-sclo-el6       <above>.src.rpm
+    build -bs *spec --define "scl php71" --define "dist .el7"
+    cbs add-pkg   sclo7-sclo-php71-sclo-candidate --owner=sclo  sclo-php71-php-pecl-uploadprogress
+    cbs add-pkg   sclo7-sclo-php71-sclo-testing   --owner=sclo  sclo-php71-php-pecl-uploadprogress
+    cbs add-pkg   sclo7-sclo-php71-sclo-release   --owner=sclo  sclo-php71-php-pecl-uploadprogress
+    cbs build     sclo7-sclo-php71-sclo-el7       <above>.src.rpm
+    cbs tag-build sclo7-sclo-php71-sclo-testing   <previous>
 
 PHP 5.6 / EL 6
 
     build -bs *spec --define "scl rh-php56" --define "dist .el6"
     cbs add-pkg sclo6-sclo-php56-sclo-candidate --owner=sclo  sclo-php56-php-pecl-uploadprogress
     cbs build   sclo6-sclo-php56-sclo-el6       <above>.src.rpm
-
-PHP 5.4 / EL 7
-
-    build -bs *spec --define "scl php54" --define "dist .el7"
-    cbs add-pkg sclo7-sclo-php54-sclo-candidate --owner=sclo  sclo-php54-php-pecl-uploadprogress
-    cbs build   sclo7-sclo-php54-sclo-el7       <above>.src.rpm
-
-PHP 5.5 / EL 7
-
-    build -bs *spec --define "scl php55" --define "dist .el7"
-    cbs add-pkg sclo7-sclo-php55-sclo-candidate --owner=sclo  sclo-php55-php-pecl-uploadprogress
-    cbs build   sclo7-sclo-php55-sclo-el7       <above>.src.rpm
 
 PHP 5.6 / EL 7
 
