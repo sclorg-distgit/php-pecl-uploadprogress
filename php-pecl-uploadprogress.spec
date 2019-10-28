@@ -2,7 +2,7 @@
 #
 # remirepo spec file for php-pecl-uploadprogress
 #
-# Copyright (c) 2013-2016 Remi Collet
+# Copyright (c) 2013-2019 Remi Collet
 # License: CC-BY-SA
 # http://creativecommons.org/licenses/by-sa/4.0/
 #
@@ -10,14 +10,17 @@
 #
 %if 0%{?scl:1}
 %global sub_prefix sclo-%{scl_prefix}
+%if "%{scl}" == "rh-php73"
+%global sub_prefix sclo-php73-
+%endif
+%if "%{scl}" == "rh-php72"
+%global sub_prefix sclo-php72-
+%endif
 %if "%{scl}" == "rh-php71"
 %global sub_prefix sclo-php71-
 %endif
 %if "%{scl}" == "rh-php70"
 %global sub_prefix sclo-php70-
-%endif
-%if "%{scl}" == "rh-php56"
-%global sub_prefix sclo-php56-
 %endif
 %scl_package      php-pecl-uploadprogress
 %endif
@@ -28,7 +31,7 @@
 Summary:        An extension to track progress of a file upload
 Name:           %{?sub_prefix}php-pecl-%{pecl_name}
 Version:        1.0.3.1
-Release:        3%{?dist}
+Release:        5%{?dist}
 License:        PHP
 Group:          Development/Languages
 URL:            http://pecl.php.net/package/%{pecl_name}
@@ -164,6 +167,12 @@ cd NTS
 
 
 %changelog
+* Mon Oct 28 2019 Remi Collet <remi@remirepo.net> - 1.0.3.1-5
+- build for sclo-php73
+
+* Thu Nov 15 2018 Remi Collet <remi@remirepo.net> - 1.0.3.1-4
+- build for sclo-php72
+
 * Thu Aug 10 2017 Remi Collet <remi@remirepo.net> - 1.0.3.1-3
 - change for sclo-php71
 
