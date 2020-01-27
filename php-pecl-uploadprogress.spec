@@ -2,7 +2,7 @@
 #
 # remirepo spec file for php-pecl-uploadprogress
 #
-# Copyright (c) 2013-2019 Remi Collet
+# Copyright (c) 2013-2020 Remi Collet
 # License: CC-BY-SA
 # http://creativecommons.org/licenses/by-sa/4.0/
 #
@@ -16,12 +16,6 @@
 %if "%{scl}" == "rh-php72"
 %global sub_prefix sclo-php72-
 %endif
-%if "%{scl}" == "rh-php71"
-%global sub_prefix sclo-php71-
-%endif
-%if "%{scl}" == "rh-php70"
-%global sub_prefix sclo-php70-
-%endif
 %scl_package      php-pecl-uploadprogress
 %endif
 
@@ -30,18 +24,12 @@
 
 Summary:        An extension to track progress of a file upload
 Name:           %{?sub_prefix}php-pecl-%{pecl_name}
-Version:        1.0.3.1
-Release:        5%{?dist}
+Version:        1.1.2
+Release:        1%{?dist}
 License:        PHP
 Group:          Development/Languages
 URL:            http://pecl.php.net/package/%{pecl_name}
 Source0:        http://pecl.php.net/get/%{pecl_name}-%{version}.tgz
-
-# http://svn.php.net/viewvc/pecl/uploadprogress/trunk/LICENSE?view=co
-Source1:        LICENSE
-
-# See https://github.com/Jan-E/uploadprogress
-Patch0:         %{pecl_name}-php7.patch
 
 BuildRequires:  %{?scl_prefix}php-devel
 BuildRequires:  %{?scl_prefix}php-pear
@@ -82,10 +70,6 @@ mv %{pecl_name}-%{version} NTS
 %{?_licensedir:sed -e '/LICENSE/s/role="doc"/role="src"/' -i package.xml}
 
 cd NTS
-%patch0 -p1 -b .php7
-
-cp %{SOURCE1} LICENSE
-
 # Sanity check, really often broken
 extver=$(sed -n '/#define PHP_UPLOADPROGRESS_VERSION/{s/.* "//;s/".*$//;p}' php_uploadprogress.h)
 if test "x${extver}" != "x%{version}%{?prever:-%{prever}}"; then
@@ -123,7 +107,7 @@ make -C NTS install INSTALL_ROOT=%{buildroot}
 install -D -m 644 %{ini_name} %{buildroot}%{php_inidir}/%{ini_name}
 
 # Install XML package description
-install -D -m 644 package2.xml %{buildroot}%{pecl_xmldir}/%{name}.xml
+install -D -m 644 package.xml %{buildroot}%{pecl_xmldir}/%{name}.xml
 
 # Documentation
 for i in %{!?_licensedir:LICENSE} $(grep 'role="doc"' package.xml | sed -e 's/^.*name="//;s/".*$//')
@@ -167,6 +151,9 @@ cd NTS
 
 
 %changelog
+* Mon Jan 27 2020 Remi Collet <remi@remirepo.net> - 1.1.2-1
+- update to 1.1.2
+
 * Mon Oct 28 2019 Remi Collet <remi@remirepo.net> - 1.0.3.1-5
 - build for sclo-php73
 
