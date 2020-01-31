@@ -24,8 +24,8 @@
 
 Summary:        An extension to track progress of a file upload
 Name:           %{?sub_prefix}php-pecl-%{pecl_name}
-Version:        1.1.2
-Release:        1%{?dist}
+Version:        1.1.3
+Release:        2%{?dist}
 License:        PHP
 Group:          Development/Languages
 URL:            http://pecl.php.net/package/%{pecl_name}
@@ -52,13 +52,12 @@ Provides:       %{?scl_prefix}php-pecl-%{pecl_name}%{?_isa}  = %{version}-%{rele
 
 
 %description
-An extension to track progress of a file upload
+A PHP extension to track progress of a file upload, including details
+on the speed of the upload, estimated time remaining, and access to
+the contents of the file as it is being uploaded
 
-It is only known to work on Apache with mod_php, other SAPI implementations
-unfortunately still have issues.
-
-See %{pecl_docdir}/%{pecl_name}/examples
-for a little example.
+It requires the use of the Apache HTTP Server with mod_php.
+Other web servers and PHP-FPM are not yet supported.
 
 Package built for PHP %(%{__php} -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')%{?scl: as Software Collection (%{scl} by %{?scl_vendor}%{!?scl_vendor:rh})}.
 
@@ -151,6 +150,10 @@ cd NTS
 
 
 %changelog
+* Fri Jan 31 2020 Remi Collet <remi@remirepo.net> - 1.1.3-2
+- update to 1.1.3
+- improve description
+
 * Mon Jan 27 2020 Remi Collet <remi@remirepo.net> - 1.1.2-1
 - update to 1.1.2
 
